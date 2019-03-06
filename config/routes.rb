@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '(/:year)(/:month)(/:day)/page(/1)', to: redirect { |_, req|
     req.path.split('page').first
   }
+
   get '/(:year)/(:month)/(:day)/(page/:page)',
       to:          'article_archives#index',
       constraints: { year: /\d{4}/, month: /\d{2}/, day: /\d{2}/ },
@@ -164,6 +165,10 @@ Rails.application.routes.draw do
   # Misc plumbing infrastructure
   get 'manifest.json',  to: 'misc#manifest_json'
   get 'opensearch.xml', to: 'misc#opensearch_xml'
+
+  # Localizations
+  get 'espanol', to: 'article_archives#index', defaults: { locale: 'espanol' }
+  get 'spanish', to: redirect('espanol')
 
   # Pages
   get '*path', to: 'pages#show', as: :page, via: :all

@@ -4,10 +4,11 @@ class ArticleArchivesController < ApplicationController
     @body_id    = 'article-archives'
     @page_title = 'Articles'
 
-    @article_archive = ArticleArchive.new(year:  params[:year],
-                                          month: params[:month],
-                                          day:   params[:day],
-                                          page:  params[:page])
+    @article_archive = ArticleArchive.new(year:   params[:year],
+                                          month:  params[:month],
+                                          day:    params[:day],
+                                          page:   params[:page],
+                                          locale: params[:locale])
 
     # Redirect to somewhere else if showing this result set isn’t useful
     path =
